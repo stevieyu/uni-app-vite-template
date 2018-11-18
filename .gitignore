@@ -1,0 +1,5 @@
+.git
+.idea
+.idea.config.js
+dist
+node_modules
