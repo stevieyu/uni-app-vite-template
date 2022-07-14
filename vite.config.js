@@ -13,6 +13,8 @@ export default defineConfig({
         reactivityTransform: true,
       }
     }),
-    unocss({}),
+    unocss({
+      presets: [],
+    }),
   ],
 })
