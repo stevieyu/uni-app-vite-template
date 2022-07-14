@@ -5,6 +5,7 @@ import presetMini from '@unocss/preset-mini'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  transpileDependencies:['@dcloudio/uni-ui'],
   define: {
     __VUE_OPTIONS_API__: false,
   },
