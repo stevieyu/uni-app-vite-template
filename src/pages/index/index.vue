@@ -10,19 +10,11 @@
   </view>
 </template>
 
-<script>
-import AaBb from "@/components/AaBb";
-export default {
-  components:{
-    AaBb
-  },
-  data() {
-    return {
-      title: 'Hello',
-    }
-  },
-  onLoad() {},
-}
+<script setup>
+import AaBb from "@/components/AaBb.vue";
+
+const title = 'Hello word'
+
 </script>
 
 <style>
