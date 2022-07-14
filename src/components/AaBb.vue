@@ -39,7 +39,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style>
 .swiper {
   height: 300rpx;
   width: 90vw;
