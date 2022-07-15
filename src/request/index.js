@@ -19,30 +19,48 @@ export const request = async (path = '', method = 'get', data = null, options = 
         Object.assign(query, data)
         data = null
     }
-
+    // path = `http://httpbin.org/status/401`
     try{
-        const {errMsg, data} = await uni.request({
+        const res = await uni.request({
             url: url(path, query),
             data: null,
             header: {
-                // 'X-Auth-Token': ''
+                'X-Auth-Token': token()
             },
             ...options
         });
-        errorHandle(errMsg, data)
+        const {data, header, statusCode} = res
+        if(header['X-Auth-Token']) token(header['X-Auth-Token'])
+        errorHandle(statusCode, data)
         return data
     }catch(e){
         throw e
     }
 }
 
-const errorHandle = (errMsg, data) => {
-    if(errMsg !== 'request:ok') {
-        throw Error(errMsg)
+const errorToast = (msg, err = null) => {
+    if(msg) uni.showToast({
+        title: msg,
+        duration: 2000
+    })
+    throw Error(err || msg)
+}
+const errorHandle = (statusCode, data) => {
+    if(statusCode >= 500) {
+        errorToast('服务器异常不可用！')
     }
-    if(data.code >= 1000) {
-        throw Error(data.msg)
+    if(statusCode === 403) {
+        errorToast(`无权限访问`)
     }
+    if(statusCode === 401) {
+        errorToast(`未登录`)
+    }
+    if(statusCode >= 400) {
+        errorToast(`错误请求：${statusCode}`)
+    }
+    // if(data.code >= 1000) {
+    //     throw Error(data.msg)
+    // }
 }
 
 export default {
@@ -50,4 +68,12 @@ export default {
     post: (path, data)=> request(path, 'post', data),
     put: (path, data)=> request(path, 'put', data),
     delete: (path, data)=> request(path, 'delete', data),
+}
+
+export const token = (token) => {
+    const key = 'token'
+    if((token !== undefined && !token) && token){
+        uni.setStorageSync(key, token || '')
+    }
+    return uni.getStorageSync(key) || ''
 }
