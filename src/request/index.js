@@ -34,6 +34,7 @@ export const request = async (path = '', method = 'get', data = null, options = 
         errorHandle(statusCode, data)
         return data
     }catch(e){
+        console.error(e);
         throw e
     }
 }
@@ -65,10 +66,10 @@ const errorHandle = (statusCode, data) => {
 }
 
 export default {
-    get: (path, query)=> request(path, 'get', query),
-    post: (path, data)=> request(path, 'post', data),
-    put: (path, data)=> request(path, 'put', data),
-    delete: (path, data)=> request(path, 'delete', data),
+    get: (path, query)=> throttleRequest(path, 'get', query),
+    post: (path, data)=> throttleRequest(path, 'post', data),
+    put: (path, data)=> throttleRequest(path, 'put', data),
+    delete: (path, data)=> throttleRequest(path, 'delete', data),
 }
 
 export const token = (token) => {
@@ -78,3 +79,29 @@ export const token = (token) => {
     }
     return uni.getStorageSync(key) || ''
 }
+
+const throttleQueue = {};
+export const throttlePromise = (p) => (...args) => new Promise((t, c)=> {
+  const key = args.join()
+  if(!throttleQueue[key]) {
+    throttleQueue[key] = {t: [], c: []}
+    p(...args)
+      .then((...res) => {
+        for(const v of throttleQueue[key].t){
+          v(...res)
+        }
+      })
+      .catch((...res) => {
+        for(const v of throttleQueue[key].c){
+          v(...res)
+        }
+      })
+      .finally(() => {
+        delete throttleQueue[key]
+      })
+  }
+  throttleQueue[key].t.push(t)
+  throttleQueue[key].c.push(c)
+})
+
+export const throttleRequest = throttlePromise(request)

@@ -1,9 +1,8 @@
 <template>
 <slot :list="dataList"/>
-<uni-load-more :status="moreStatus" @clickLoadMore="loadMore" />
+<uni-load-more :status="moreStatus" @clickLoadMore="loadMore" v-if="!error"/>
 </template>
 <script setup>
-import {watch} from 'vue'
 import {useLoadMore} from 'vue-request'
 import {onReachBottom} from '@dcloudio/uni-app';
 import request from './index'
@@ -16,19 +15,31 @@ const props = defineProps({
     query: {
         type: Object,
         default: () => ({})
+    },
+    map: {
+        type: Function,
+        default: null
     }
 })
 
-const fetchData = async ({page} = {}) => {
+const fetchData = async (ctx) => {
+    let {page} = ctx || {};
+
     page = page ? page + 1 : 1;
+    let list = await request.get(props.path, {page, ...props.query})
+    if(props.map) list = list.map(props.map)
     return {
-        list: await request.get(props.path, {page}),
+        list,
         page,
     }
 }
 
-const {dataList, loadMore, noMore,loading, error} = useLoadMore(fetchData, {
-//   manual: true,
+const {dataList, loadMore, noMore, loading, error, mutate} = useLoadMore(fetchData, {
+    refreshDeps: [props.query],
+    refreshDepsAction: () => {
+        mutate();
+        loadMore()
+    },
     isNoMore: d => {
         return d?.list?.length % 10 > 0;
     },
@@ -42,9 +53,4 @@ const moreStatus = $computed(() => {
     if(loading.value) return arr[1]
     return arr[0]
 })
-
-watch(error, (val) => {
-    console.error(val);
-})
-
 </script>
