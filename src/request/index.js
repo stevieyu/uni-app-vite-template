@@ -39,8 +39,8 @@ export const request = async (path = '', method = 'get', data = null, options = 
     }
 }
 
-const errorToast = (msg, err = null) => {
-    if(msg) uni.showToast({
+export const errorToast = (msg, err = null) => {
+    if(msg && !errorToast.disable) uni.showToast({
         title: msg,
         duration: 2000
     })
