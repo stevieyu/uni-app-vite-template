@@ -47,6 +47,7 @@
     "@dcloudio/uni-quickapp-webview": "^3.0.0-alpha-3041520220609002",
     "@dcloudio/uni-ui": "^1.4.19",
     "pinia": "^2.0.14",
+    "url-parse": "^1.5.10",
     "vue": "^3.2.33",
     "vue-request": "^2.0.0-rc.3"
   },

@@ -1,9 +1,13 @@
+import URL from 'url-parse'
+import parse from 'qs/lib/parse'
+import stringify from 'qs/lib/stringify'
+
 export const url = (path = '', query = {}) => {
     const origin = import.meta.env.VITE_API_ORIGIN || 'http://httpbin.org'
     const uri = new URL(path.includes('://') ? path : `${origin}/anything`)
     if(!path.includes('://')) uri.pathname = (uri.pathname + path).replace('//')
-    for(let k of Object.keys(query)){
-        uri.searchParams.set(k, query[k])
+    if(Object.keys(query).length){
+        uri.query = stringify(Object.assign({}, parse(uri.query.replace('?', '')), query))
     }
     return uri.toString()
 }

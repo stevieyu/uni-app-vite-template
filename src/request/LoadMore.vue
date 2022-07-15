@@ -1,12 +1,13 @@
 <template>
 <uni-list v-for="item in dataList" :key="item.id">
-    <slot :item="item"/>
+    <slot :item="item" />
 </uni-list>
 <uni-load-more :status="moreStatus" @clickLoadMore="loadMore"></uni-load-more>
 </template>
 <script setup>
 import {watch} from 'vue'
 import {useLoadMore} from 'vue-request'
+import {onReachBottom} from '@dcloudio/uni-app';
 import request from './index'
 
 const props = defineProps({
@@ -34,6 +35,10 @@ const {dataList, loadMore, noMore,loading, error} = useLoadMore(fetchData, {
         return d?.list.length % 10 > 0;
     },
 });
+
+onReachBottom(() => {
+    console.log('onReachBottom');
+})
 
 const moreStatus = $computed(() => {
     const arr = `more/loading/noMore`.split('/')
