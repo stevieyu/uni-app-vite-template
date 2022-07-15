@@ -7,7 +7,7 @@ import presetMini from '@unocss/preset-mini'
 export default defineConfig({
   transpileDependencies:['@dcloudio/uni-ui'],
   define: {
-    __VUE_OPTIONS_API__: false,
+    // __VUE_OPTIONS_API__: false, // 兼容问题， 小程序还是注释掉这个
   },
   plugins: [
     splitVendorChunkPlugin(),

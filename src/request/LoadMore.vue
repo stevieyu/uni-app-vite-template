@@ -1,8 +1,6 @@
 <template>
-<uni-list v-for="item in dataList" :key="item.id">
-    <slot :item="item" />
-</uni-list>
-<uni-load-more :status="moreStatus" @clickLoadMore="loadMore"></uni-load-more>
+<slot :list="dataList"/>
+<uni-load-more :status="moreStatus" @clickLoadMore="loadMore" />
 </template>
 <script setup>
 import {watch} from 'vue'
@@ -32,13 +30,11 @@ const fetchData = async ({page} = {}) => {
 const {dataList, loadMore, noMore,loading, error} = useLoadMore(fetchData, {
 //   manual: true,
     isNoMore: d => {
-        return d?.list.length % 10 > 0;
+        return d?.list?.length % 10 > 0;
     },
 });
 
-onReachBottom(() => {
-    console.log('onReachBottom');
-})
+onReachBottom(() => loadMore())
 
 const moreStatus = $computed(() => {
     const arr = `more/loading/noMore`.split('/')
