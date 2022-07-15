@@ -46,11 +46,11 @@ const errorToast = (msg, err = null) => {
     throw Error(err || msg)
 }
 const errorHandle = (statusCode, data) => {
-
     if(statusCode === 403) {
         errorToast(`无权限访问`)
     }
     if(statusCode === 401) {
+        token('')
         errorToast(`未登录`)
     }
     if(statusCode >= 500) {
@@ -59,9 +59,9 @@ const errorHandle = (statusCode, data) => {
     if(statusCode >= 400) {
         errorToast(`错误请求：${statusCode}`)
     }
-    // if(data.code >= 1000) {
-    //     throw Error(data.msg)
-    // }
+    if(typeof data === 'object' && data.code >= 1000 && data.msg) {
+        errorToast(data.msg)
+    }
 }
 
 export default {
