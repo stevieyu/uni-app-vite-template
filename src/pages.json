@@ -6,9 +6,9 @@
 				"navigationBarTitleText": "uni-app"
 			}
 		}, {
-			"path": "pages/index/a",
+			"path": "pages/index/popup",
 			"style": {
-				"navigationBarTitleText": "a"
+				"navigationBarTitleText": "popup"
 			}
 		}, {
 			"path": "pages/posts",
@@ -32,8 +32,8 @@
 			"pagePath": "pages/index/index",
 			"text": "首页"
 		},{
-			"pagePath": "pages/index/a",
-			"text": "模块"
+			"pagePath": "pages/index/popup",
+			"text": "popup"
 		}]
 	},
 	//https://uniapp.dcloud.io/collocation/pages.html#condition
