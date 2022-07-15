@@ -46,9 +46,7 @@ const errorToast = (msg, err = null) => {
     throw Error(err || msg)
 }
 const errorHandle = (statusCode, data) => {
-    if(statusCode >= 500) {
-        errorToast('服务器异常不可用！')
-    }
+
     if(statusCode === 403) {
         errorToast(`无权限访问`)
     }
@@ -57,6 +55,9 @@ const errorHandle = (statusCode, data) => {
     }
     if(statusCode >= 400) {
         errorToast(`错误请求：${statusCode}`)
+    }
+    if(statusCode >= 500) {
+        errorToast('服务器异常不可用！')
     }
     // if(data.code >= 1000) {
     //     throw Error(data.msg)
