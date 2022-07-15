@@ -53,11 +53,11 @@ const errorHandle = (statusCode, data) => {
     if(statusCode === 401) {
         errorToast(`未登录`)
     }
-    if(statusCode >= 400) {
-        errorToast(`错误请求：${statusCode}`)
-    }
     if(statusCode >= 500) {
         errorToast('服务器异常不可用！')
+    }
+    if(statusCode >= 400) {
+        errorToast(`错误请求：${statusCode}`)
     }
     // if(data.code >= 1000) {
     //     throw Error(data.msg)
