@@ -1,22 +1,13 @@
 <template>
   <view class="content">
-
-    <uni-forms label-position="top">
-			<uni-forms-item label="a" name="a">
-				<uni-easyinput type="text" placeholder="a" />
-			</uni-forms-item>
-			<uni-forms-item label="b" name="b">
-				<uni-easyinput type="text" placeholder="b" />
-			</uni-forms-item>
-			<uni-forms-item label="c" name="c">
-				<uni-easyinput type="text" placeholder="c" />
-			</uni-forms-item>
-		</uni-forms>
-
     <image class="logo" src="/static/logo.png"></image>
     <navigator url="/moduleA/pages/index">
       <view class="text-area">
-        <text class="title">{{ title }}</text>
+        <div class="i-ant-design-trademark-outlined" />
+        <div class="i-fa6-brands-weixin" />
+        <text class="title">
+          {{ title }}
+        </text>
       </view>
     </navigator>
     <AaBb />
