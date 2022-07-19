@@ -3,8 +3,7 @@
     <image class="logo" src="/static/logo.png"></image>
     <navigator url="/moduleA/pages/index">
       <view class="text-area">
-        <div class="i-ant-design-trademark-outlined" />
-        <div class="i-fa6-brands-weixin" />
+        <div :class="i" v-for="i in icons" :key="i" />
         <text class="title">
           {{ title }}
         </text>
@@ -18,6 +17,11 @@
 import AaBb from "@/components/AaBb.vue";
 
 const title = 'Hello word'
+
+const icons = [
+    'i-ant-design-trademark-outlined',
+    'i-fa6-brands-weixin',
+]
 
 </script>
 
