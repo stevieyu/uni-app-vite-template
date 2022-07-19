@@ -22,6 +22,8 @@ const props = defineProps({
     }
 })
 
+console.log(getApp());
+
 const fetchData = async (ctx) => {
     let {page} = ctx || {};
 

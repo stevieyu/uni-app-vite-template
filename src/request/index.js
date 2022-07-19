@@ -1,4 +1,5 @@
 import stringify from 'qs/lib/stringify'
+import {$toast} from '../supports/feedback'
 
 export const url = (path = '', query = {}) => {
     const origin = import.meta.env.VITE_API_ORIGIN || 'http://httpbin.org/anything'
@@ -38,10 +39,7 @@ export const request = async (path = '', method = 'get', data = null, options = 
 }
 
 export const errorToast = (msg, err = null) => {
-    if(msg && !errorToast.disable) uni.showToast({
-        title: msg,
-        duration: 2000
-    })
+    if(msg && !errorToast.disable) $toast(msg);
     throw Error(err || msg)
 }
 const errorHandle = (statusCode, data) => {
