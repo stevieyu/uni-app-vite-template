@@ -19,7 +19,6 @@ import AaBb from "@/components/AaBb.vue";
 const title = 'Hello word'
 
 const icons = [
-    'i-ant-design-trademark-outlined',
     'i-fa6-brands-weixin',
 ]
 
