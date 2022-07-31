@@ -1,3 +1,5 @@
+import '../config'
+
 import { createPinia } from 'pinia'
 
 export default {

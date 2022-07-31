@@ -1,5 +1,4 @@
 import config from '@/features/cqrs/config'
+import restful from '@/features/restful'
 
-config.getRequest = (url) => {
-
-}
+config.getRequest = restful.get
