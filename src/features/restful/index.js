@@ -1,7 +1,8 @@
 import stringify from 'qs/lib/stringify'
-import {$toast} from '../supports/feedback'
+import {$toast} from '@/supports/feedback'
+import throttlePromise from "@/features/common/utils/throttlePromise";
 
-export const url = (path = '', query = {}) => {
+export const stringifyUrl = (path = '', query = {}) => {
     const origin = import.meta.env.VITE_API_ORIGIN || 'http://httpbin.org/anything'
     let uri = path.includes('://') ? path : origin.replace(/\/$/, '')
 
@@ -18,14 +19,14 @@ export const request = async (path = '', method = 'get', data = null, options = 
         Object.assign(query, data)
         data = null
     }
+    const headers = {};
+    if(token()) headers['X-Auth-Token'] = token()
     // path = `http://httpbin.org/status/401`
     try{
         const res = await uni.request({
-            url: url(path, query),
+            url: stringifyUrl(path, query),
             data: null,
-            header: {
-                'X-Auth-Token': token()
-            },
+            header: headers,
             ...options
         });
         const {data, header, statusCode} = res
@@ -75,29 +76,5 @@ export const token = (token) => {
     }
     return uni.getStorageSync(key) || ''
 }
-
-const throttleQueue = {};
-export const throttlePromise = (p) => (...args) => new Promise((t, c)=> {
-  const key = args.join()
-  if(!throttleQueue[key]) {
-    throttleQueue[key] = {t: [], c: []}
-    p(...args)
-      .then((...res) => {
-        for(const v of throttleQueue[key].t){
-          v(...res)
-        }
-      })
-      .catch((...res) => {
-        for(const v of throttleQueue[key].c){
-          v(...res)
-        }
-      })
-      .finally(() => {
-        delete throttleQueue[key]
-      })
-  }
-  throttleQueue[key].t.push(t)
-  throttleQueue[key].c.push(c)
-})
 
 export const throttleRequest = throttlePromise(request)
