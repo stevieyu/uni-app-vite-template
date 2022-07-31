@@ -1,4 +1,5 @@
 import stringify from 'qs/lib/stringify'
+import requestAdapter from './uniAdapter'
 import {$toast} from '@/supports/feedback'
 import throttlePromise from "@/features/common/utils/throttlePromise";
 
@@ -23,9 +24,9 @@ export const request = async (path = '', method = 'get', data = null, options = 
     if(token()) headers['X-Auth-Token'] = token()
     // path = `http://httpbin.org/status/401`
     try{
-        const res = await uni.request({
+        const res = await requestAdapter({
             url: stringifyUrl(path, query),
-            data: null,
+            data,
             header: headers,
             ...options
         });
