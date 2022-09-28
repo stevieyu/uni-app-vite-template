@@ -53,7 +53,8 @@
         "appid": "wxa0ab4ce15fd08580",
         "setting" : {
             "urlCheck" : false,
-            "minifyWXML": true
+            "minifyWXML": true,
+            "minified": true
         },
         "usingComponents" : true,
         "lazyCodeLoading": "requiredComponents",
