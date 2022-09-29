@@ -55,7 +55,8 @@
         "setting" : {
             "urlCheck" : false,
             "minifyWXML": true,
-            "minified": true
+            "minified": true,
+            "compileHotReLoad": true
         },
         "usingComponents" : true,
         "lazyCodeLoading": "requiredComponents",
@@ -63,7 +64,9 @@
         //https://uniapp.dcloud.io/collocation/manifest.html#optimization-2
         "optimization": {
             "subPackages": true
-        }
+        },
+        //https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/skyline/migration/
+        "renderer": "skyline"
     },
     "mp-alipay" : {
         "usingComponents" : true
