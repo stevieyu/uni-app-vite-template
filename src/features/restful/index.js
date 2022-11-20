@@ -1,6 +1,6 @@
 import stringify from 'qs/lib/stringify'
 import requestAdapter from './uniAdapter'
-import {$toast} from '@/supports/feedback'
+import {$toast} from '@/features/feedback'
 import throttlePromise from "@/features/common/utils/throttlePromise";
 
 export const stringifyUrl = (path = '', query = {}) => {

@@ -51,7 +51,7 @@
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid": "wxa0ab4ce15fd08580",
-        "libVersion": "2.25.4", // 大于2.6开发工具报错
+        "libVersion": "2.21.2", // 大于2.6开发工具报错
         "setting" : {
             "urlCheck" : false,
             "minifyWXML": true,
@@ -65,6 +65,20 @@
         "optimization": {
             "subPackages": true
         },
+        "permission": {
+            "scope.userLocation": {
+                "desc": "你的位置信息将用于小程序位置接口的效果展示" // 高速公路行驶持续后台定位
+            }
+        },
+        "requiredPrivateInfos": [
+            "chooseAddress",
+            "chooseLocation",
+            "choosePoi",
+            "getLocation",
+            "onLocationChange",
+            "startLocationUpdateBackground",
+            "startLocationUpdate"
+        ],
         //https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/skyline/migration/
         "renderer": "skyline"
     },

@@ -12,6 +12,7 @@ export default defineConfig({
     splitVendorChunkPlugin(),
     uni({
       vueOptions:{
+        // customElement: /open-/,
         reactivityTransform: true,
       }
     }),

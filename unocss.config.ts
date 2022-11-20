@@ -15,6 +15,7 @@ import {
 import presetIcons from '@unocss/preset-icons'
 
 // UniApp
+// @ts-ignore
 const isH5 = process.env.UNI_PLATFORM === 'h5'
 
 // Taro
@@ -35,7 +36,7 @@ export default defineConfig({
         https://icon-sets.iconify.design/fa6-regular
         https://icon-sets.iconify.design/fa6-brands
         https://icon-sets.iconify.design/ant-design
-            */
+        */
         presetIcons({}),
     ],
     transformers: [
