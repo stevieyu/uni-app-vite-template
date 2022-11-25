@@ -26,8 +26,7 @@
 <script setup>
 import {findISBN} from "@/NearbyBooksShare/models/Books";
 import UserBooks from "@/NearbyBooksShare/models/UserBooks";
-import useLocation from "@/features/common/services/useLocation";
-import {watch} from "vue";
+import {getLocation} from "@/features/common/services/useLocation";
 import {me} from "@/features/common/services/mpserverless";
 
 const props = defineProps(['q'])
@@ -40,34 +39,41 @@ let form = $ref({
   gps: null
 })
 
-const {location, err} = useLocation()
-watch(location, (val) => {
-  if(!val) return
-  form.gps = {
-    type: "Point", coordinates: [val.longitude, val.latitude]
-  }
-}, {immediate: true})
-
 
 let book = $ref({})
-findISBN(props.q).then(async (res) => {
-  book = res
-  UserBooks.findOne({
-    bookid: book._id,
-    auth: {
-      userId: (await me()).userId
-    }
-  }).then(res => {
-    id = res._id
-    for (const k of 'remark,gps'.split(',')){
-      form[k] = res[k]
-    }
-  })
-})
+findISBN(props.q)
+    .then((res) => {
+      book = res
+      me().then(me => {
+        UserBooks.findOne({
+          bookid: book._id,
+          auth: {
+            userId: me.userId
+          }
+        }).then(res => {
+          if(!res) return;
+          id = res._id
+          for (const k of 'remark,gps'.split(',')){
+            form[k] = res[k]
+          }
+        })
+      })
+    })
 
-const onSubmit = () => {
+const onSubmit = async () => {
   const data = {...form, bookid: book._id}
-  if(!data.gps) return uni.showToast({title: '位置信息获取失败，请开启手机位置信息'})
+
+  try {
+    const gps = await getLocation()
+    form.gps = {
+      type: "Point", coordinates: [gps.longitude, gps.latitude]
+    }
+  }catch (e){
+    return uni.showToast({
+      title: e.message,
+      icon: 'none',
+    })
+  }
 
   UserBooks.updateOne({
     _id: id
