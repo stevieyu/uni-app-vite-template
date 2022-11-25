@@ -80,7 +80,8 @@
             "startLocationUpdate"
         ],
         //https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/skyline/migration/
-        "renderer": "skyline"
+        //不支持页面全局滚动、不支持原生导航栏
+        //"renderer": "skyline"
     },
     "mp-alipay" : {
         "usingComponents" : true

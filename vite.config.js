@@ -12,7 +12,7 @@ export default defineConfig({
     splitVendorChunkPlugin(),
     uni({
       vueOptions:{
-        // customElement: /open-/,
+        customElement: /wx-|page-meta/,
         reactivityTransform: true,
       }
     }),

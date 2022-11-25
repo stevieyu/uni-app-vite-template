@@ -1,20 +1,12 @@
 <script>
-import mpserverless from "@/features/common/services/mpserverless";
-import useLocation from "@/features/common/services/useLocation";
 export default {
-  async onLaunch () {
-    console.time('App Launch')
-    const res = await mpserverless.init()
-    console.log('mpserverless', mpserverless)
-    if(!res.success) console.error('mpserverless init', res)
-    console.timeEnd('App Launch')
-    console.log('mpserverless', mpserverless)
+  onLaunch () {
+    // console.log('App Launch')
   },
-  onShow: function () {
+  onShow () {
     // console.log('App Show')
-    useLocation()
   },
-  onHide: function () {
+  onHide () {
     // console.log('App Hide')
   },
 }

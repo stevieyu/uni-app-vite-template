@@ -1,9 +1,8 @@
 <template>
-  <view class="content">
+  <view class="content hidden">
     <image class="logo" src="/static/logo.png"></image>
     <navigator url="/moduleA/pages/index">
       <view class="text-area">
-        <div :class="i" v-for="i in icons" :key="i" />
         <text class="title">
           {{ title }}
         </text>
@@ -18,15 +17,9 @@
 </template>
 
 <script setup>
-import {me} from "@/features/common/services/mpserverless";
 import AaBb from "@/components/AaBb.vue";
-import {search} from "@/features/common/services/doubanBook";
 
 const title = 'Hello word'
-
-const icons = [
-    'i-fa6-brands-weixin',
-]
 
 let avatarUrl = $ref('https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0')
 const onChooseAvatar = (e) => {
@@ -34,17 +27,7 @@ const onChooseAvatar = (e) => {
   avatarUrl = e.detail.avatarUrl
 }
 
-// mpserverless.db.collection('test')
-//     .find({}, {})
-//     .then(console.log)
-//     .catch(console.error);
-
-me()
-    .then(console.log)
-    .catch(console.error);
-
-search();
-
+uni.redirectTo({url:'/NearbyBooksShare/index'})
 </script>
 
 <style>

@@ -19,10 +19,12 @@
 	],
 	"subpackages": [
 		{
-			"root": "moduleA",
+			"root": "NearbyBooksShare",
 			"pages": [
 				{
-					"path": "pages/index"
+					"path": "index"
+				},{
+					"path": "form"
 				}
 			]
 		}
@@ -36,6 +38,7 @@
 			"text": "popup"
 		}]
 	},
+	"usingComponents": {},
 	//https://uniapp.dcloud.io/collocation/pages.html#condition
 	"condition": {
 		"current": 0,
@@ -45,8 +48,8 @@
 			"query": ""
 		},
 		{
-			"name": "moduleA",
-			"path": "moduleA/pages/index"
+			"name": "NearbyBooksShare",
+			"path": "NearbyBooksShare/index"
 		}]
 	},
 	"easycom": {

@@ -1,6 +1,7 @@
 import { createSSRApp } from "vue";
 import App from "./App.vue";
 import bootstrap from './bootstrap'
+import "@/features/common/services/mpserverless";
 
 import 'uno.css';
 
