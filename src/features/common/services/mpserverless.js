@@ -31,7 +31,7 @@ export const collection = (name) => {
     const doc = mpserverless.db.collection(name);
 
     const methods = {}
-    for (const method of 'findOne,insertOne'.split(',')){
+    for (const method of 'find,findOne,insertOne,updateOne,findOneAndUpdate'.split(',')){
         methods[method] = async (...args) => {
             const {success, result} = await doc[method](...args)
             if(!success) throw Error(`collection ${name} ${method} fail`);
@@ -53,7 +53,7 @@ export const me = async () => {
     init()
     const {success, result} = await mpserverless.user.getInfo()
     if(!success) throw new Error('fetch me fail');
-    return result;
+    return result?.user;
 }
 
 export default mpserverless
