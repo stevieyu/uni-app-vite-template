@@ -3,8 +3,6 @@ import {search} from "@/features/common/services/doubanBook";
 
 const doc = collection('Books')
 
-export default doc
-
 export const findISBN = async (isbn) => {
     let Book = await doc.findOne({
         isbn
@@ -27,3 +25,6 @@ export const findISBN = async (isbn) => {
     return Book
 }
 
+
+
+export default doc

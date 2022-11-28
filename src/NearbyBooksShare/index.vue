@@ -1,14 +1,9 @@
 <template>
-  <page-meta>
-    <navigation-bar
-        title="附近图书"
-    />
-  </page-meta>
-  <div class="min-h-screen">
-    <near-books v-show="idx === 0"/>
-    <my-books v-show="idx === 2" />
+  <div class="min-h-screen flex flex-col">
+    <near-books class="flex-auto" v-if="idx === 0"/>
+    <my-books class="flex-auto" v-if="idx === 2" />
+    <tab-bar v-model:idx="idx"/>
   </div>
-  <tab-bar v-model:idx="idx"/>
 </template>
 
 <script setup>

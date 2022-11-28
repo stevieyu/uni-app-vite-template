@@ -25,6 +25,8 @@
 					"path": "index"
 				},{
 					"path": "form"
+				},{
+					"path": "apply"
 				}
 			]
 		}

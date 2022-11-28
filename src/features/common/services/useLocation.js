@@ -1,6 +1,6 @@
-import {ref, watch} from "vue";
+import {ref} from "vue";
 
-const location = ref(null)
+const location = ref(uni.getStorageSync('location'))
 const err = ref('')
 
 export const getLocation = async (options = {
@@ -8,6 +8,7 @@ export const getLocation = async (options = {
     altitude: false,
     isHighAccuracy: false,
 }) => {
+    if(location.value) return location.value;
     const {authSetting} = await uni.getSetting();
 
     let res
@@ -28,6 +29,7 @@ export const getLocation = async (options = {
 
     delete res.errMsg
     location.value = res
+    uni.setStorageSync('location', res)
     return res
 }
 

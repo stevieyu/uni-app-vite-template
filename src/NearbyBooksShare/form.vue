@@ -8,7 +8,7 @@
     <image :src="book.pic" class="w-12 h-auto block mr-2" mode="aspectFill"/>
     <view class="flex-auto">
       <view class="font-bold">{{ book.title }}</view>
-      <view class="text-gray-400">
+      <view class="text-gray-500">
         {{ book.author_name }} {{ book.year }}
       </view>
     </view>
@@ -39,12 +39,14 @@ let form = $ref({
   gps: null
 })
 
+let my = $ref({})
 
 let book = $ref({})
 findISBN(props.q)
     .then((res) => {
       book = res
       me().then(me => {
+        my = me
         UserBooks.findOne({
           bookid: book._id,
           auth: {
@@ -64,9 +66,9 @@ const onSubmit = async () => {
   const data = {...form, bookid: book._id}
 
   try {
-    const gps = await getLocation()
-    form.gps = {
-      type: "Point", coordinates: [gps.longitude, gps.latitude]
+    const location = await getLocation()
+    data.gps = {
+      type: "Point", coordinates: [location.longitude, location.latitude]
     }
   }catch (e){
     return uni.showToast({
@@ -76,7 +78,10 @@ const onSubmit = async () => {
   }
 
   UserBooks.updateOne({
-    _id: id
+    bookid: data.bookid,
+    auth: {
+      userId: my?.userId
+    }
   }, {
     $set: data
   }, {

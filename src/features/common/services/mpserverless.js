@@ -31,7 +31,7 @@ export const collection = (name) => {
     const doc = mpserverless.db.collection(name);
 
     const methods = {}
-    for (const method of 'find,findOne,insertOne,updateOne,findOneAndUpdate'.split(',')){
+    for (const method of 'find,findOne,insertOne,updateOne,findOneAndUpdate,aggregate'.split(',')){
         methods[method] = async (...args) => {
             const {success, result} = await doc[method](...args)
             if(!success) throw Error(`collection ${name} ${method} fail`);

@@ -1,6 +1,6 @@
-import { defineStore, storeToRefs } from 'pinia'
+import { defineStore } from 'pinia'
 
-export default storeToRefs(defineStore('main', {
+export default defineStore('main', {
     // a function that returns a fresh state
     state: () => ({
         counter: 0,
@@ -22,4 +22,4 @@ export default storeToRefs(defineStore('main', {
             this.counter = 0
         },
     },
-}))
+})
