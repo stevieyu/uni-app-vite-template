@@ -1,5 +1,5 @@
 <template>
-  <view class="content hidden">
+  <view class="content" v-if="false">
     <image class="logo" src="/static/logo.png"></image>
     <navigator url="/moduleA/pages/index">
       <view class="text-area">
