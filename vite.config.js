@@ -1,6 +1,6 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
-import unocss from 'unocss/vite';
+import unocss from 'unocss/vite';//大于0.46异常
 
 // https://vitejs.dev/config/
 export default defineConfig({
