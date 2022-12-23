@@ -51,7 +51,7 @@
     /* 小程序特有相关 */
     "mp-weixin" : {
         "appid": "wxa0ab4ce15fd08580",
-        "libVersion": "2.21.2", // 大于2.6开发工具报错
+        "libVersion": "2.25.4",
         "setting" : {
             "urlCheck" : false,
             "minifyWXML": true,
