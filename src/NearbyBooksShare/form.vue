@@ -9,7 +9,7 @@
     <view class="flex-auto">
       <view class="font-bold">{{ book.title }}</view>
       <view class="text-gray-500">
-        {{ book.author_name }} {{ book.year }}
+        {{ book.year }} {{ book.author_name }} {{ book.isbn }}
       </view>
     </view>
   </view>

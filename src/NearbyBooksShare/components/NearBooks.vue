@@ -6,6 +6,7 @@
                    :to="`/NearbyBooksShare/apply?ubid=`+i._id"
                    :title="i.book.title"
                    :note="`${i.book.year} ${i.book.author_name} ${i.book.isbn}`"
+                   thumbSize="lg"
                    :thumb="i.book.pic"
     />
   </uni-list>

@@ -5,6 +5,7 @@
                    link :to="`/NearbyBooksShare/form?q=`+i.book.isbn"
                    :title="i.book.title"
                    :note="`${i.book.year} ${i.book.author_name} ${i.book.isbn}`"
+                   thumbSize="lg"
                    :thumb="i.book.pic"
     />
   </uni-list>
