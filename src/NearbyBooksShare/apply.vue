@@ -89,7 +89,7 @@ me().then(me => {
   my = me;
 })
 
-const isApplyUser = $computed(() => book.apply.auth.userId === my.userId)
+const isApplyUser = $computed(() => book.apply.auth?.userId === my?.userId)
 
 UserBooks
     .findOne({
