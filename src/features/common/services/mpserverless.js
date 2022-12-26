@@ -50,7 +50,7 @@ export const deleteFile = mpserverless.file.deleteFile;
 
 // https://help.aliyun.com/document_detail/196786.html
 export const me = async () => {
-    init()
+    await init()
     const {success, result} = await mpserverless.user.getInfo()
     if(!success) throw new Error('fetch me fail');
     return result?.user;
