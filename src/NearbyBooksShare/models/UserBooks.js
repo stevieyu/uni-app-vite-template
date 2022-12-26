@@ -38,6 +38,8 @@ export const lazyBooksApplyBooks = async (userBooks) => {
             userbookid: {
                 $in: userBooks.map(i => i._id)
             }
+        }, {
+            sort: { _id: -1 }
         })
     ]).then(([books, applyBooks]) => {
         return userBooks.map(i => {
