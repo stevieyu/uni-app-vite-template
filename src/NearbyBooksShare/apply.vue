@@ -112,22 +112,35 @@ UserBooks
       book = res
     })
 
+const toast = (msg) => uni.showToast({
+  title: msg,
+  icon: 'none',
+})
+
+//发起申请
 const submitApply = () => {
   const apply = {...book.apply}
+  if(!apply.return_data) return toast('请填写还书日期');
+
   apply.userbookid = book.user._id
   apply.status = 1
 
   submit(apply);
 }
 
+//拒绝申请
 const submitRefuse = () => {
   const apply = {...book.apply}
   apply.status = 2
 
   submit(apply);
 }
+
+//同意申请
 const submitAgree = () => {
   const apply = {...book.apply}
+  if(!apply.trade_address) return toast('请填写交换图书地址');
+  if(!apply.trade_datetime) return toast('请填写交换图书时间');
   apply.status = 3
 
   submit(apply);
