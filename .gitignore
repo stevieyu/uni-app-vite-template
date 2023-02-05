@@ -3,3 +3,4 @@
 .idea.config.js
 dist
 node_modules
+.env.local
