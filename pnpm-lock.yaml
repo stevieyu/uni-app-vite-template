@@ -42,8 +42,8 @@ dependencies:
     specifier: 3.0.0-3070920230324001
     version: 3.0.0-3070920230324001(postcss@8.4.21)(vue@3.2.47)
   '@dcloudio/uni-ui':
-    specifier: ^1.4.26
-    version: 1.4.26
+    specifier: ^1.4.28
+    version: 1.4.28
   pinia:
     specifier: ^2.0.30
     version: 2.0.30(vue@3.2.47)
@@ -2545,8 +2545,8 @@ packages:
       - vue
     dev: false
 
-  /@dcloudio/uni-ui@1.4.26:
-    resolution: {integrity: sha512-JpYXNi9WEmFeTcF6EWrksrMqA0HEl76nxW/Imd0PW1qm/7TORAGSpvMmEDYrMQ3vIbRQFV+n6bhiJIWi34u/5Q==}
+  /@dcloudio/uni-ui@1.4.28:
+    resolution: {integrity: sha512-e/lSbvR79KH9+d3D4ueNbvD6szigjO/5IyjBNmiTqaj0PTS324fBV3L6f3s1qpkYonM4rdOl000hVOcAg6Gh/A==}
     dev: false
 
   /@dcloudio/vite-plugin-uni@3.0.0-3070320230222002(postcss@8.4.21)(vite@4.1.1)(vue@3.2.47):
