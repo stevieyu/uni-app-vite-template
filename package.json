@@ -61,7 +61,7 @@
     "@iconify-json/fa6-solid": "^1.1.10",
     "@unocss/preset-icons": "^0.52.7",
     "sass": "^1.58.0",
-    "unocss": "^0.50.6",
+    "unocss": "^0.54.1",
     "unocss-applet": "^0.3.2",
     "vite": "^4.1.1"
   }
